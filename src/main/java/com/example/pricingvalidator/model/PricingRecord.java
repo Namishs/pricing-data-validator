@@ -27,7 +27,7 @@ public class PricingRecord {
 
     private LocalDate tradeDate;
 
-    // keep price as string to capture INVALID or missing values
+    
     private String price;
 
     private String exchange;
