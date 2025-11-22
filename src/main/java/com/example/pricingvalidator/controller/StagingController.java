@@ -21,14 +21,14 @@ public class StagingController {
     private final StagingService stagingService;
     private final ValidatorService validatorService;
 
-    // GET all staging rows
+    
     @GetMapping
     public ResponseEntity<List<StagingRecord>> list() {
         log.debug("GET /api/pricing/staging");
         return ResponseEntity.ok(stagingService.findAll());
     }
 
-    // GET one staging row by ID
+    
     @GetMapping("/{id}")
     public ResponseEntity<StagingRecord> get(@PathVariable Long id) {
         log.debug("GET /api/pricing/staging/{}", id);
@@ -37,7 +37,7 @@ public class StagingController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // PATCH update a staging record (partial update)
+    
     @PatchMapping("/{id}")
     public ResponseEntity<StagingRecord> patch(
             @PathVariable Long id,
@@ -46,17 +46,13 @@ public class StagingController {
         log.info("PATCH /api/pricing/staging/{} requested", id);
         return stagingService.findById(id).map(existing -> {
 
-            // apply only non-null fields (simple merge)
+            
             if (update.getInstrumentGuid() != null) existing.setInstrumentGuid(update.getInstrumentGuid());
             if (update.getTradeDate() != null) existing.setTradeDate(update.getTradeDate());
             if (update.getPrice() != null) existing.setPrice(update.getPrice());
             if (update.getExchange() != null) existing.setExchange(update.getExchange());
             if (update.getProductType() != null) existing.setProductType(update.getProductType());
-
-            // allow clearing or setting new error state
             if (update.getErrors() != null) existing.setErrors(update.getErrors());
-
-            // call service using the correct signature
             StagingRecord saved = stagingService.update(id, existing);
             log.info("Patched staging record id={}", saved.getId());
             return ResponseEntity.ok(saved);
@@ -64,7 +60,7 @@ public class StagingController {
         }).orElse(ResponseEntity.notFound().build());
     }
 
-    // Revalidate and move to main pricing table
+
     @PostMapping("/{id}/revalidate")
     public ResponseEntity<?> revalidateAndMove(@PathVariable Long id) {
 
@@ -72,7 +68,7 @@ public class StagingController {
 
         return stagingService.findById(id).map(existing -> {
 
-            // Map StagingRecord -> PricingRecord manually for validation
+            
             PricingRecord candidate = new PricingRecord();
             candidate.setInstrumentGuid(existing.getInstrumentGuid());
             candidate.setTradeDate(existing.getTradeDate());
@@ -80,16 +76,16 @@ public class StagingController {
             candidate.setExchange(existing.getExchange());
             candidate.setProductType(existing.getProductType());
 
-            // Validate candidate using existing validator pipeline
+            
             ValidationResult validationResult = validatorService.validate(candidate);
 
             if (!validationResult.isValid()) {
                 log.warn("Revalidation failed for staging id={} errors={}", id, validationResult.getErrors());
-                // return the errors back to caller so they can adjust via PATCH
+                
                 return ResponseEntity.badRequest().body(validationResult.getErrors());
             }
 
-            // If valid, move to pricing and delete staging
+            
             try {
                 stagingService.moveToPricingAndDeleteStaging(existing);
                 log.info("Moved staging id={} instrumentGuid={} to pricing", id, existing.getInstrumentGuid());
@@ -102,7 +98,7 @@ public class StagingController {
         }).orElse(ResponseEntity.notFound().build());
     }
 
-    // DELETE a staging record
+    
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         log.info("DELETE /api/pricing/staging/{} called", id);
