@@ -18,7 +18,7 @@ public class StagingRecord {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // keep same fields as PricingRecord for easy copy
+    
     @Column(name = "instrument_guid")
     private String instrumentGuid;
 
@@ -34,7 +34,7 @@ public class StagingRecord {
     @Column(name = "product_type")
     private String productType;
 
-    // Store the validation error summary (comma-separated or JSON string)
+    
     @Column(name = "errors", length = 1000)
     private String errors;
 }
