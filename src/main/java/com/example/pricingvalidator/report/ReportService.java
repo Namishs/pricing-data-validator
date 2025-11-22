@@ -26,12 +26,12 @@ public class ReportService {
         long totalStaging = staging.size();
         long totalDistinct = totalPricing + totalStaging;
 
-        // errorsCount: staging.errors is stored as comma-separated string
+       
         Map<String, Long> errorsCount = new HashMap<>();
         for (StagingRecord s : staging) {
             String err = s.getErrors();
             if (err == null || err.isBlank()) continue;
-            // split on comma and trim
+            
             String[] parts = err.split(",");
             for (String p : parts) {
                 String k = p.trim().toLowerCase(Locale.ROOT);
@@ -40,7 +40,7 @@ public class ReportService {
             }
         }
 
-        // byExchange (pricing table)
+        
         Map<String, Long> byExchange = pricing.stream()
                 .map(PricingRecord::getExchange)
                 .filter(Objects::nonNull)
@@ -48,7 +48,7 @@ public class ReportService {
                 .map(s -> s.isEmpty() ? "UNKNOWN" : s)
                 .collect(Collectors.groupingBy(s -> s, Collectors.counting()));
 
-        // byProductType (pricing table)
+        
         Map<String, Long> byProductType = pricing.stream()
                 .map(PricingRecord::getProductType)
                 .filter(Objects::nonNull)
@@ -67,10 +67,7 @@ public class ReportService {
                 .build();
     }
 
-    /**
-     * Build a CSV string of staging invalid rows (useful for download).
-     * Columns: id,instrumentGuid,tradeDate,price,exchange,productType,errors
-     */
+   
     public String stagingInvalidCsv() {
         List<StagingRecord> staging = stagingRepo.findAllByOrderByIdAsc();
         StringBuilder sb = new StringBuilder();
