@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: pricing-validator
+
+pricing:
+  validator:
+    rules:
+      - required-fields
+      - price-format
+      - allowed-exchange
+      - duplicate-check
+    allowed-exchanges:
+      - CME
+      - NYMEX
+      - CBOT
+      - COMEX
