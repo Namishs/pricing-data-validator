@@ -13,22 +13,14 @@ public class ReportController {
 
     private final ReportService reportService;
 
-    /**
-     * GET JSON summary:
-     *   /api/pricing/report
-     */
+    
     @GetMapping
     public ResponseEntity<ReportSummary> getReport() {
         ReportSummary summary = reportService.generateSummary();
         return ResponseEntity.ok(summary);
     }
 
-    /**
-     * GET CSV download (invalid staging rows):
-     *   /api/pricing/report/staging.csv
-     * or
-     *   /api/pricing/report?format=csv
-     */
+    
     @GetMapping(value = "/staging.csv", produces = "text/csv")
     public ResponseEntity<String> downloadStagingCsv() {
         String csv = reportService.stagingInvalidCsv();
@@ -38,7 +30,7 @@ public class ReportController {
         return new ResponseEntity<>(csv, headers, HttpStatus.OK);
     }
 
-    // alternative: query param
+    
     @GetMapping(params = "format=csv", produces = "text/csv")
     public ResponseEntity<String> downloadStagingCsvParam() {
         String csv = reportService.stagingInvalidCsv();
