@@ -30,9 +30,7 @@ public class PricingService {
         return repo.findAll();
     }
 
-    /**
-     * Parse CSV -> validate each record with ValidatorService -> save valid records
-     */
+    
     public Map<String, Object> ingestCsv(InputStream csvStream) throws Exception {
         log.info("Starting CSV ingest");
         List<PricingRecord> rows = parser.parse(csvStream);
@@ -51,7 +49,7 @@ public class PricingService {
                 invalidSamples.add(Map.of("record", r, "errors", vr.getErrors()));
                 log.warn("Record invalid: instrumentGuid={} errors={}", r.getInstrumentGuid(), vr.getErrors());
 
-                // persist invalid record into staging so it can be corrected via API
+                
                 try {
                     StagingRecord saved = stagingService.saveInvalidRecord(r, vr.getErrors());
                     log.info("Saved invalid record to staging id={} instrumentGuid={}", saved.getId(), saved.getInstrumentGuid());
@@ -61,14 +59,14 @@ public class PricingService {
                 continue;
             }
 
-            // If valid, persist
+           
             try {
                 repo.save(r);
                 valid++;
                 log.info("Saved valid pricing record: instrumentGuid={} tradeDate={}", r.getInstrumentGuid(), r.getTradeDate());
             } catch (Exception e) {
                 log.error("Failed to save pricing record instrumentGuid={}: {}", r.getInstrumentGuid(), e.getMessage(), e);
-                // Optionally move to staging as invalid if DB constraint prevents save
+                
                 invalid++;
                 invalidSamples.add(Map.of("record", r, "errors", List.of("persist-failed")));
             }
