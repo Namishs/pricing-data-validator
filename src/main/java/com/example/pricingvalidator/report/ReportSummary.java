@@ -15,14 +15,14 @@ import java.util.Map;
 public class ReportSummary {
     private Instant generatedAt;
 
-    // totals
-    private long totalPricingRecords;   // valid (main table)
-    private long totalStagingRecords;   // invalid (staging table)
-    private long totalDistinctIngested; // pricing + staging total rows we currently have
+    
+    private long totalPricingRecords;   
+    private long totalStagingRecords;   
+    private long totalDistinctIngested; 
 
-    // breakdowns
-    private Map<String, Long> errorsCount;         // error -> count (from staging.errors)
-    private Map<String, Long> byExchange;         // exchange -> count (pricing)
-    private Map<String, Long> byProductType;      // productType -> count (pricing)
+    
+    private Map<String, Long> errorsCount;         
+    private Map<String, Long> byExchange;         
+    private Map<String, Long> byProductType;      
 }
 
