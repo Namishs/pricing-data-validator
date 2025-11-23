@@ -1,4 +1,4 @@
-# 🌐 Pricing Data Validation & Reporting Utility
+# Pricing Data Validation & Reporting Utility
 ### A Production-Ready Java + Spring Boot + Docker Project for Financial Pricing Pipelines
 
 This project simulates **real-world pricing ingestion workflows** used in trading, clearing, market-risk, and middle-office applications.
@@ -8,7 +8,7 @@ Designed to demonstrate **clean code, validation architecture, Spring Boot APIs,
 
 ---
 
-## 📌 Table of Contents
+## Table of Contents
 
 - [Motivation](#motivation)
 - [Features](#features)
@@ -23,7 +23,7 @@ Designed to demonstrate **clean code, validation architecture, Spring Boot APIs,
 
 ---
 
-## ⭐ Motivation
+## Motivation
 
 Financial institutions ingest **millions of pricing data points** across markets daily.  
 Bad or inconsistent pricing data can lead to:
@@ -45,7 +45,7 @@ This project demonstrates how real pricing-validation systems work:
 
 ---
 
-## ✨ Features
+## Features
 
 ### **1. CSV Upload & Parsing**
 - Upload CSV via API or Swagger UI
@@ -109,7 +109,7 @@ This project includes:
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 | Layer | Technology |
 |-------|------------|
@@ -124,7 +124,7 @@ This project includes:
 
 ---
 
-## 🏗 Architecture Overview
+## Architecture Overview
 
 CSV File → Parser → Validator Pipeline →
 | Valid → pricing_records
@@ -144,7 +144,7 @@ Encapsulated into:
 
 ---
 
-## 📚 API Documentation
+## API Documentation
 Once the application is running, open:
 http://localhost:8080/swagger-ui/index.html
 
@@ -167,7 +167,7 @@ http://localhost:8080/swagger-ui/index.html
 
 ---
 
-## ▶ Running the Project (IntelliJ)
+##  Running the Project (IntelliJ)
 
 1. Open IntelliJ → *Open Project*
 2. Import as Maven project
@@ -177,7 +177,7 @@ http://localhost:8080/swagger-ui/index.html
 
 ---
 
-## 🐳 Running with Docker
+##  Running with Docker
 
 ### **1. Build Docker Image**
 ```bash
@@ -197,7 +197,7 @@ http://localhost:8080/swagger-ui/index.html
 Use the input box on
 - `POST /api/pricing/ingest` → Upload CSV file
 
-### **📁 Project Structure**
+### ** Project Structure**
 ```css
 pricing-validator
 │── src/main/java/com/example/pricingvalidator/
@@ -214,7 +214,7 @@ pricing-validator
 │── pom.xml
 │── README.md
 ```
-### **📄 Sample CSV**
+### ** Sample CSV**
 ```yaml
 instrument_guid,trade_date,price,exchange,product_type
 1001,2025-01-10,123.45,CME,FUT
@@ -224,7 +224,7 @@ instrument_guid,trade_date,price,exchange,product_type
 1004,2025-01-10,350.00,CBOT,FUT
 1005,2025-01-10,INVALID,COMEX,OPT
 ```
-### **✔ Final Notes**
+### ** Final Notes**
 
 **This project demonstrates:**
 
