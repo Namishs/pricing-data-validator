@@ -197,7 +197,7 @@ http://localhost:8080/swagger-ui/index.html
 Use the input box on
 - `POST /api/pricing/ingest` → Upload CSV file
 
-### ** Project Structure**
+### Project Structure
 ```css
 pricing-validator
 │── src/main/java/com/example/pricingvalidator/
@@ -214,7 +214,7 @@ pricing-validator
 │── pom.xml
 │── README.md
 ```
-### ** Sample CSV**
+###  Sample CSV
 ```yaml
 instrument_guid,trade_date,price,exchange,product_type
 1001,2025-01-10,123.45,CME,FUT
@@ -224,7 +224,7 @@ instrument_guid,trade_date,price,exchange,product_type
 1004,2025-01-10,350.00,CBOT,FUT
 1005,2025-01-10,INVALID,COMEX,OPT
 ```
-### ** Final Notes**
+###  Final Notes
 
 **This project demonstrates:**
 
