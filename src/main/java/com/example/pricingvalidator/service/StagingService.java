@@ -19,7 +19,7 @@ import java.util.Optional;
 public class StagingService {
 
     private final StagingRecordRepository stagingRepo;
-    private final PricingRecordRepository pricingRepo; // used by moveToPricing (optional)
+    private final PricingRecordRepository pricingRepo; 
 
     public StagingRecord save(StagingRecord r) {
         log.debug("Saving staging record instrumentGuid={}", r.getInstrumentGuid());
