@@ -35,13 +35,13 @@ Bad or inconsistent pricing data can lead to:
 
 This project demonstrates how real pricing-validation systems work:
 
-✔ Parsing structured data  
-✔ Multi-rule validation pipeline  
-✔ Staging invalid rows  
-✔ Correcting and revalidating  
-✔ Promoting valid data to the main pricing store  
-✔ Generating reports  
-✔ Running fully inside Docker
+- Parsing structured data  
+- Multi-rule validation pipeline  
+- Staging invalid rows  
+- Correcting and revalidating  
+- Promoting valid data to the main pricing store  
+- Generating reports  
+- Running fully inside Docker
 
 ---
 
@@ -102,10 +102,10 @@ Swagger UI is auto-generated.
 ### **6. Full Docker Containerization**
 This project includes:
 
-✔ Multi-stage Dockerfile  
-✔ Small & optimized JRE runtime image  
-✔ Easy one-command deployment  
-✔ Works on ANY system with Docker installed
+- Multi-stage Dockerfile  
+- Small & optimized JRE runtime image  
+- Easy one-command deployment  
+- Works on ANY system with Docker installed
 
 ---
 
